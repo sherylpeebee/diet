@@ -1,0 +1,32 @@
+doctype html
+html(ng-app = "food-diary")
+  head
+    title= "food-diary"
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/cosmo/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js')
+    script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js')
+    script(src='/javascripts/user-controller.js')
+
+
+  body(ng-controller = "user-controller")
+    h3 Statistics
+    table.table#stats
+      thead
+        td BMI
+        td Old Weight
+        td Weight Gained 
+        td Current Weight
+      tbody
+        tr
+          td(ng-model = "userStats") 
+            |33234
+          td(ng-model = "userStats") 
+            {{userStats.weight}}
+          td(ng-model = "userStats") 
+            {{userStats.weight}}
+          
+            
+    block content

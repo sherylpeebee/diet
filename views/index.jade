@@ -1,0 +1,84 @@
+
+extends layout
+block content
+  h1 Welcome, #{user}!
+  
+  h3 Food Diary
+  
+  form.row(ng-submit = "saveUser(user)" type="submit" name = "#{user}")
+    .col-xs-6
+        .form-group
+          label(for = "name") name
+          input(type = "text" placeholder = "name" value = "#{user}" ng-model = "user.name").form-control#name
+        .form-group
+          label(for = "age") age
+          input(type = "number" placeholder = "age" ng-model = "user.age").form-control#age
+        .form-group
+          label(for = "gender") gender
+          input(type = "text" placeholder = "gender" ng-model = "user.gender").form-control#gender
+    div.col-xs-6
+        .form-group
+          label(for = "weight") weight
+          input(type = "number" placeholder = "weight" ng-model = "user.weight").form-control#weight
+        .form-group
+          label(for = "height") height
+          input(type = "number" placeholder = "height" ng-model = "user.height").form-control#height
+        .form-group
+          label(for = "units") units
+          select.form-control#units(ng-model = "user.units.id")
+            option(value="in") in  
+            option(value="cm") cm
+    div.col-xs-2
+      button(type = "submit" ).btn.btn-info Save User
+      {{user}}
+  h3 Food
+  .container#meal    
+    form.row(ng-submit = "addFood(food)")
+      .col-xs-3
+          .form-group
+            label(for = "description") Description
+            input(type = "text" placeholder = "description" ng-model = "food.description").form-control#description
+          .form-group
+            label(for = "meal") Meal
+            select.form-control#meal(ng-model = "food.meal.id")
+              option(value="breakfast") breakfast 
+              option(value="lunch") lunch
+              option(value="dinner") dinner
+          .form-group
+            label(for = "calories") Calories
+            input(type = "number" placeholder = "calories" ng-model = "food.calories").form-control#calories
+          .form-group
+            label(for = "servings") Servings
+            input(type = "number" placeholder = "servings" ng-model = "food.servings").form-control#servings
+            br
+            button(type = "submit" ).btn.btn-info Save Food
+            
+    h3 Tracking
+    
+    table.table
+      thead
+        td edit
+        td delete
+        td description
+        td meal
+        td calories
+        td servings
+        td date
+      tbody
+        tr(ng-repeat =  "food in foods track by $index") 
+          td 
+            button.btn.btn-primary{{food.edit}} Edit
+          td 
+            button(ng-click = "deleteFood($index)").btn.btn-danger{{food.delete}} Delete 
+          td {{food.description}} 
+          td  {{food.meal.id}} 
+          td   {{food.calories}} 
+          td {{food.servings}}
+          td   {{food.date | date : "shortDate"}}
+            
+        
+            
+        
+            
+
+  
